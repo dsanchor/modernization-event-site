@@ -6,4 +6,4 @@ RUN npm install
 RUN npm run build --prod
 # run
 FROM nginxinc/nginx-unprivileged
-COPY --from=node /app/dist/modernization-event-site /usr/share/nginx/html
+COPY --from=node /app/dist/modernization-event-site/browser /usr/share/nginx/html
