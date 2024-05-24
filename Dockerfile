@@ -1,11 +1,13 @@
 FROM node:alpine
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
-COPY . /usr/src/app
+COPY . .
 
-RUN npm install -g @angular/cli
+RUN npm install 
 
-RUN npm install
+RUN npm run build --prod
 
-CMD ["ng", "serve", "--host", "0.0.0.0"]
+FROM nginx:alpine
+
+COPY --from=node /app/dist/modernization-event-site /usr/share/nginx/html
